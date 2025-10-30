@@ -1,67 +1,74 @@
 // CMPM 121 Smelly Code Activity
 
 // This variable keeps track of the counter
-let c = 0;
+let counter = 0;
 
 // These constants are for button IDs and heading text
-const a = "increment", b = "counter", h = "CMPM 121 Project";
+const incrementButton = "increment",
+  counterButton = "counter",
+  headerName = "CMPM 121 Project",
+  decrementButton = "decrement",
+  resetButton = "reset";
+
+//function to update the background color of the website and the counter element
+function updateUI() {
+  const counterElement = document.getElementById(counterButton);
+  if (counterElement) {
+    counterElement.textContent = counter.toString();
+  }
+  document.title = "CLICKED " + counter;
+  document.body.style.backgroundColor = counter % 2 ? "pink" : "lightblue";
+}
 
 function setup() {
   // Create the HTML for the counter
   document.body.innerHTML = `
-    <h1>${h}</h1>
-    <p>Counter: <span id="${b}">0</span></p>
-    <button id="${a}">Click Me!</button>
-    <button id="dec">Decrement</button>
-    <button id="reset">Reset</button>
+    <h1>${headerName}</h1>
+    <p>Counter: <span id="${counterButton}">0</span></p>
+    <div id="buttonController">
+      <button id="${incrementButton}">Click Me!</button>
+      <button id="${decrementButton}">Decrement</button>
+      <button id="${resetButton}">Reset</button>
+    </div>
   `;
 
-  // Get the increment button element from the document
-  const bI = document.getElementById(a);
+  /* // Get the increment button element from the document
+  const incrementButtonElement = document.getElementById(incrementButton);
   // Get the decrement button element from the document
-  const bD = document.getElementById("dec");
+  const decrementButtonElement = document.getElementById(decrementButton);
   // Get the reset button element from the document
-  const bR = document.getElementById("reset");
+  const resetButtonElement = document.getElementById(resetButton);
   // Get the counter span element from the document
-  const ctr = document.getElementById(b);
+  const counterButtonElement = document.getElementById(counterButton);
 
   // Check if any element is missing, then exit the function
-  if (!bI || !bD || !bR || !ctr) return;
+  if (
+    !incrementButtonElement || !decrementButtonElement || !resetButtonElement ||
+    !counterButtonElement
+  ) {
+    return;
+  }*/
 
-  // Add click event to the increment button
-  bI.addEventListener("click", () => {
-    // Increase the counter by 1
-    c++;
-    // Update the counter display
-    ctr.innerHTML = `${c}`;
-    // Update the document title
-    document.title = "Clicked " + c;
-    // Change the background color based on even/odd count
-    document.body.style.backgroundColor = c % 2 ? "pink" : "lightblue";
-  });
+  // Get div id as an html getElementById
+  const controls = document.getElementById("buttonController");
 
-  // Add click event to the decrement button
-  bD.addEventListener("click", () => {
-    // Decrease the counter by 1
-    c--;
-    // Update the counter display
-    ctr.innerHTML = `${c}`;
-    // Update the document title
-    document.title = "Clicked " + c;
-    // Change the background color based on even/odd count
-    document.body.style.backgroundColor = c % 2 ? "pink" : "lightblue";
-  });
-
-  // Add click event to the reset button
-  bR.addEventListener("click", () => {
-    // Reset the counter to 0
-    c = 0;
-    // Update the counter display
-    ctr.innerHTML = `${c}`;
-    // Update the document title
-    document.title = "Clicked " + c;
-    // Change the background color based on even/odd count
-    document.body.style.backgroundColor = c % 2 ? "pink" : "lightblue";
+  // Add click event for all the buttons in one listener
+  controls?.addEventListener("click", (event) => {
+    if (event.target instanceof HTMLElement) {
+      const clickedElementId = event.target.id;
+      switch (clickedElementId) {
+        case incrementButton:
+          counter++;
+          break;
+        case decrementButton:
+          counter--;
+          break;
+        case resetButton:
+          counter = 0;
+          break;
+      }
+      updateUI();
+    }
   });
 }
 

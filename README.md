@@ -1,40 +1,9 @@
-# Section 5 – Refactoring Code Smells in Practice
+1. The first change that I made and issue I noticed was the names of all the variables had no description
+   what so ever. I changed the names of the variables and made them far more descriptive so the code is easier to read.
 
-This activity is designed to help you practice identifying code smells and applying refactoring patterns to a real codebase in CMPM 121, Game Development Patterns.
+2. the next thing that I needed to change was the code repetition. Not only was there repeated code in the each
+   event listener but there was also no need to have an event listener for each button. So I condensed all the event listners into one using a div element in the html code to organize this and then I created and updateUI function to handle the original repeated code.
 
-## Assignment Instructions
+3. after I did the last changes there was no need to have the extra getElementId for the html elements so I got rid of those only needing to add one which was the buttonController variable.
 
-For this assignment, your task is to **analyze and improve the code in `src/main.ts`**:
-
-1. **Identify code smells**: Review the code and look for patterns that may cause maintenance issues, reduce readability, or introduce potential bugs.
-2. **Refactor**: Apply **refactoring patterns** as described in Fowler’s _Refactoring_ book to improve the code.
-3. **Document your work**: Once you have completed your refactoring:
-   - Rewrite this README.md
-   - List the **code smells** you identified
-   - Describe the **refactoring patterns** you applied and how they improved the code
-
-## Getting Started
-
-With Codespaces (or another environment supporting devcontainers):
-
-1. Run `deno task dev` to start the development server
-
-Without Codespaces (local VS Code):
-
-1. Install the [Deno](https://docs.deno.com/runtime/getting_started/installation/) runtime.
-2. Install the Deno VS Code extension (must be done only after installing Deno runtime).
-3. Run `./setup-hooks.sh` to enable pre-commit quality checks
-4. Run `deno task dev` to start the development server
-
-The setup script configures Git hooks to automatically run formatting, linting, and type checking before commits.
-
-## Deployment
-
-This project is configured for automatic deployment to GitHub Pages using GitHub Actions.
-
-### Setup GitHub Pages Deployment
-
-1. Go to your repository's Settings → Pages
-2. Under "Source", select "GitHub Actions"
-3. The workflow will automatically deploy on pushes to the `main` branch
-4. Your site will be published at `https://<your-github-username>.github.io/<repository-name>/`
+Other than that I dont think there was anything else that needed to change.
